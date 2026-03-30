@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JMB | MC Producciones | Pablo Quiroga DJ</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         :root {
             --jmb: #ff6b35;
@@ -17,137 +17,170 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; overflow-x: hidden; }
 
-        /* --- HERO --- */
+        /* --- HERO CON EFECTO DE LUCES --- */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            background: linear-gradient(rgba(1, 3, 5, 0.7), rgba(1, 3, 5, 0.9)), 
-                        url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=2070') center/cover;
+            /* IMAGEN DE CONSOLA GRANDE Y PROFESIONAL */
+            background: linear-gradient(rgba(1, 3, 5, 0.4), rgba(1, 3, 5, 0.9)), 
+                        url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070') center/cover;
             padding: 0 5%;
             text-align: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        /* Efecto de luces de escenario animadas */
+        .hero::before, .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0, 212, 255, 0.05) 20deg, transparent 40deg);
+            animation: rotateLight 10s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero::after {
+            background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(255, 107, 53, 0.05) 20deg, transparent 40deg);
+            animation: rotateLight 15s linear infinite reverse;
+        }
+
+        @keyframes rotateLight {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .hero-box { z-index: 10; max-width: 1100px; }
-        .hero-box .badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50px;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            color: var(--mc);
-        }
-
+        
         .hero-box h1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3.5rem, 10vw, 7.5rem);
+            font-size: clamp(3.5rem, 12vw, 8.5rem);
             line-height: 0.9;
             margin-bottom: 25px;
+            /* Efecto Neón en el título */
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 0 50px rgba(0, 212, 255, 0.2);
         }
 
-        .hero-btns {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .hero-box p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         .btn {
-            padding: 18px 35px;
-            border-radius: 5px;
+            padding: 20px 40px;
+            border-radius: 50px;
             font-weight: 800;
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            transition: 0.3s;
+            font-size: 0.85rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            display: inline-block;
         }
 
-        .btn-jmb { background: var(--jmb); color: white; }
-        .btn-mc { background: var(--mc); color: white; }
-        .btn-pq { background: var(--pq); color: white; }
-        .btn:hover { transform: translateY(-5px); filter: brightness(1.2); }
+        .btn-jmb { background: var(--jmb); color: white; box-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
+        .btn-mc { background: var(--mc); color: white; box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+        .btn-pq { background: var(--pq); color: white; box-shadow: 0 0 20px rgba(247, 147, 30, 0.3); }
 
-        /* --- SECCIÓN DEPORTES (LO QUE HACEMOS) --- */
+        .btn:hover { transform: translateY(-8px) scale(1.05); filter: brightness(1.2); }
+
+        /* --- SECCIÓN DEPORTES --- */
         .sports-section {
-            padding: 80px 10%;
-            background: rgba(255,255,255,0.02);
+            padding: 100px 10%;
+            background: linear-gradient(180deg, #010305 0%, #0a111a 100%);
             text-align: center;
         }
 
         .sports-section h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 3.5rem;
-            margin-bottom: 40px;
-            color: var(--mc);
+            font-size: 4rem;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, var(--mc), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .sports-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
         .sport-item {
-            background: rgba(255,255,255,0.05);
-            padding: 30px 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
+            background: rgba(255,255,255,0.03);
+            padding: 40px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+            backdrop-filter: blur(5px);
         }
 
         .sport-item:hover {
             border-color: var(--mc);
             background: rgba(0, 212, 255, 0.1);
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
         }
 
-        .sport-item i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
+        .sport-item i { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .sport-item span { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 1px; }
 
-        .sport-item span {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-        }
-
-        /* --- SERVICIOS --- */
-        .services-container { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+        /* --- SERVICIOS CON GLASSMORPHISM --- */
+        .services-container { padding: 120px 5%; max-width: 1400px; margin: 0 auto; }
+        
         .service-card {
-            background: rgba(255,255,255,0.02);
-            padding: 50px;
-            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 60px 40px;
+            border-radius: 40px;
             border: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             display: grid;
-            grid-template-columns: 100px 1fr 300px;
+            grid-template-columns: 120px 1fr 350px;
             align-items: center;
+            backdrop-filter: blur(15px);
+            transition: 0.4s;
         }
 
-        .service-card i { font-size: 3rem; }
-        .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; margin-bottom: 10px; }
-        .service-card .details { padding: 0 40px; }
-        .service-card .list { font-size: 0.8rem; opacity: 0.6; line-height: 1.6; }
+        .service-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
 
-        footer { padding: 80px 5%; text-align: center; background: #000; border-top: 1px solid rgba(255,255,255,0.1); }
+        .service-card i { font-size: 4rem; }
+        .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; margin-bottom: 10px; }
+        .service-card .details { padding: 0 50px; }
+        .service-card .list { font-size: 1rem; opacity: 0.7; line-height: 2; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 40px; }
+
+        /* --- WHATSAPP Y FOOTER --- */
+        footer { padding: 100px 5%; text-align: center; background: #000; border-top: 1px solid rgba(255,255,255,0.1); }
 
         .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+            position: fixed; bottom: 35px; right: 35px; width: 70px; height: 70px;
             background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 30px; text-decoration: none; z-index: 1000;
+            color: white; font-size: 35px; text-decoration: none; z-index: 1000;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
         @media (max-width: 900px) {
-            .service-card { grid-template-columns: 1fr; text-align: center; }
-            .service-card .details { padding: 20px 0; }
+            .service-card { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
+            .service-card .details { padding: 25px 0; }
+            .service-card .list { border-left: none; border-top: 2px solid rgba(255,255,255,0.1); padding: 25px 0 0 0; }
         }
     </style>
 </head>
@@ -155,20 +188,20 @@
 
     <section class="hero">
         <div class="hero-box">
-            <span class="badge">Producción Integral en Chivilcoy</span>
+            <span style="letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; color: var(--mc); display: block; margin-bottom: 20px; font-weight: 700;">Producción Integral | Chivilcoy</span>
             <h1>TODO EL EQUIPO PARA <br> TU PRÓXIMO <span style="color: var(--mc);">EVENTO</span></h1>
-            <p>Infraestructura tecnológica, streaming deportivo y filmación social en una sola sintonía.</p>
+            <p>Infraestructura técnica, streaming deportivo de élite y filmación cinematográfica en una sola alianza.</p>
             
             <div class="hero-btns">
                 <a href="#jmb" class="btn btn-jmb">Streaming & Pantallas</a>
                 <a href="#mc" class="btn btn-mc">Filmación & Drones</a>
-                <a href="#pq" class="btn btn-pq">DJ & Sonido</a>
+                <a href="#pq" class="btn btn-pq">Pablo Quiroga DJ</a>
             </div>
         </div>
     </section>
 
     <section class="sports-section">
-        <h2>Especialistas en Streaming Deportivo</h2>
+        <h2>ESPECIALISTAS EN STREAMING DEPORTIVO</h2>
         <div class="sports-grid">
             <div class="sport-item">
                 <i class="fas fa-flag-checkered" style="color: var(--jmb);"></i>
@@ -203,48 +236,47 @@
             <i class="fas fa-broadcast-tower" style="color: var(--jmb);"></i>
             <div class="details">
                 <h3 style="color: var(--jmb);">JMB: TÉCNICA Y STREAMING</h3>
-                <p>Infraestructura masiva para transmisiones de alto nivel.</p>
+                <p>El soporte logístico y técnico definitivo para eventos de gran escala.</p>
             </div>
             <div class="list">
-                • Streaming HD con Torres de Control <br>
-                • Pantallas LED Gigantes Exteriores/Interiores <br>
-                • Sonido Line Array e Iluminación de Escenarios
+                • Streaming HD <br>
+                • Pantallas LED Gigantes <br>
+                • Sonido Iluminación de Escenarios
             </div>
         </div>
 
         <div class="service-card" id="mc">
-            <i class="fas fa-camera-video" style="color: var(--mc);"></i>
+            <i class="fas fa-video" style="color: var(--mc);"></i>
             <div class="details">
                 <h3 style="color: var(--mc);">MC PRODUCCIONES: FILMACIÓN</h3>
-                <p>Cobertura cinematográfica y aérea profesional.</p>
+                <p>Captura cinematográfica y aérea para eventos sociales y deportivos.</p>
             </div>
             <div class="list">
-                • Filmación de Eventos Sociales (XV, Bodas) <br>
+                • Filmación de Sociales (XV, Bodas) <br>
                 • Vuelo de Drone Profesional <br>
-                • Edición de Resúmenes 
+                • Edición de Resúmenes
             </div>
         </div>
 
         <div class="service-card" id="pq">
             <i class="fas fa-compact-disc" style="color: var(--pq);"></i>
             <div class="details">
-                <h3 style="color: var(--pq);">PABLO QUIROGA: DJ</h3>
-                <p>La atmósfera perfecta para tu fiesta.</p>
+                <h3 style="color: var(--pq);">PABLO QUIROGA: DJ SET</h3>
+                <p>La energía y el sonido premium que tu fiesta necesita.</p>
             </div>
             <div class="list">
                 • DJ con mezcla en vivo y animación <br>
                 • Equipamiento de audio de alta fidelidad <br>
-                • Iluminación para pistas de baile
             </div>
         </div>
 
     </section>
 
     <footer>
-        <div class="footer-logo">JMB / MC PRODUCCIONES / PABLO QUIROGA</div>
+        <div style="font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 5px; margin-bottom: 20px;">JMB / MC / PQ</div>
         <p style="opacity: 0.4;">© 2026 Alianza Audiovisual - Chivilcoy, Buenos Aires.</p>
-        <div style="margin-top: 30px;">
-            <a href="https://wa.me/TUNUMERO" class="btn btn-mc">Pedir Presupuesto Integral</a>
+        <div style="margin-top: 40px;">
+            <a href="https://wa.me/TUNUMERO" class="btn btn-mc">Pedir Presupuesto Directo</a>
         </div>
     </footer>
 
